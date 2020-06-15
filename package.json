@@ -1,0 +1,88 @@
+{
+  "name": "geostyler-mapnik-parser",
+  "version": "0.1.0",
+  "description": "GeoStyler-Style-Parser implementation for Mapnik",
+  "main": "dist/lib/geostyler-mapnik-parser.js",
+  "types": "dist/types/geostyler-mapnik-parser.d.ts",
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "format": "prettier '**/*.ts' --write",
+    "format:check": "prettier '**/*.ts' --check",
+    "prebuild": "rimraf dist",
+    "build": "tsc && typedoc",
+    "start": "tsc --watch",
+    "test": "jest --coverage",
+    "test:watch": "jest --coverage --watch",
+    "validate": "yarn lint && yarn format:check && yarn test",
+    "deploy-docs": "ts-node tools/gh-pages-publish",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jazida-opensource/geostyler-mapnik-parser.git"
+  },
+  "keywords": [
+    "geostyler",
+    "mapnik",
+    "parser"
+  ],
+  "author": {
+    "name": "Daniel Sousa",
+    "email": "sousa.dfs@gmail.com",
+    "url": "https://github.com/jazida-opensource"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jazida-opensource/geostyler-mapnik-parser/issues"
+  },
+  "homepage": "https://github.com/jazida-opensource/geostyler-mapnik-parser#readme",
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^3.2.0",
+    "@typescript-eslint/parser": "^3.2.0",
+    "codecov": "^3.7.0",
+    "commitizen": "^4.1.2",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.10",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "typedoc": "^0.17.7",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^3.17.4",
+    "geostyler-sld-parser": "^2.0.1",
+    "geostyler-style": "^2.0.3"
+  }
+}
