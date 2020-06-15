@@ -14,6 +14,8 @@ import {
   MarkSymbolizer,
   RasterSymbolizer,
   TextSymbolizer,
+  WellKnownName,
+  PointSymbolizer,
 } from 'geostyler-style'
 import { parse as xml2json, j2xParser as Json2xmlBuilder } from 'fast-xml-parser'
 
@@ -234,47 +236,80 @@ export class MapnikStyleParser implements StyleParser {
   }
 
   private geoStylerFillSymbolizerToMapnik(symbolizer: FillSymbolizer): any {
-    const props = {
-      ...(symbolizer.color && { '@_fill': symbolizer.color }),
-      ...(symbolizer.fillOpacity && { '@_fill-opacity': symbolizer.fillOpacity }),
-      ...(symbolizer.antialias && { '@_gamma': symbolizer.antialias }),
-    }
+    const props: any = {}
+    const isPolygonPatternSymbolizer = !!symbolizer.graphicFill
+    const symbolizerName = isPolygonPatternSymbolizer ? 'PolygonPatternSymbolizer' : 'PolygonSymbolizer'
+    const graphicFill = symbolizer.graphicFill && this.geoStylerGraphicFillToMapnikFile(symbolizer.graphicFill)
+
+    if (symbolizer.color) props['@_fill'] = symbolizer.color
+    if (symbolizer.visibility === false) props['@_fill-opacity'] = 0
+    if (symbolizer.antialias) props['@_gamma'] = symbolizer.antialias
+    if (graphicFill) props['@_file'] = graphicFill
 
     return {
-      PolygonSymbolizer: Object.keys(props).length ? props : null,
+      [symbolizerName]: Object.keys(props).length ? props : null,
     }
   }
 
   private geoStylerIconSymbolizerToMapnik(symbolizer: IconSymbolizer): any {
-    const props = {
-      ...(symbolizer.image && { '@_file': symbolizer.image }),
-    }
-
-    return {
-      MarkersSymbolizer: Object.keys(props).length ? props : null,
-    }
-  }
-
-  private geoStylerLineSymbolizerToMapnik(symbolizer: LineSymbolizer): any {
-    const props = {
-      ...(symbolizer.color && { '@_stroke': symbolizer.color }),
-    }
-
-    return {
-      LineSymbolizer: Object.keys(props).length ? props : null,
-    }
+    return this.geoStylerMarkOrIconSymbolizerToMapnik(symbolizer)
   }
 
   private geoStylerMarkSymbolizerToMapnik(symbolizer: MarkSymbolizer): any {
-    const props = {
-      ...(symbolizer.color && { '@_fill': symbolizer.color }),
-      ...(symbolizer.fillOpacity && { '@_opacity': symbolizer.fillOpacity }),
-      ...(symbolizer.strokeColor && { '@_stroke': symbolizer.strokeColor }),
-      ...(symbolizer.strokeWidth && { '@_stroke-width': symbolizer.strokeWidth }),
-      ...(symbolizer.strokeOpacity && { '@_stroke-opacity': symbolizer.strokeOpacity }),
-      ...(symbolizer.avoidEdges && { '@_avoid-edges': symbolizer.avoidEdges }),
-      ...(this.symbolyzersOptions?.MarkSymbolizer?.allowOverlap && { '@_allow-overlap': 'true' }),
+    return this.geoStylerMarkOrIconSymbolizerToMapnik(symbolizer)
+  }
+
+  private geoStylerLineSymbolizerToMapnik(symbolizer: LineSymbolizer): any {
+    const props: any = {}
+    const isLinePatternSymbolizer = !!symbolizer.graphicFill
+    const symbolizerName = isLinePatternSymbolizer ? 'LinePatternSymbolizer' : 'LineSymbolizer'
+    const graphicStroke = symbolizer.graphicStroke && this.geoStylerGraphicFillToMapnikFile(symbolizer.graphicStroke)
+    const graphicFill = symbolizer.graphicFill && this.geoStylerGraphicFillToMapnikFile(symbolizer.graphicFill)
+
+    if (symbolizer.color) props['@_stroke'] = symbolizer.color
+    if (symbolizer.opacity) props['@_stroke-opacity'] = symbolizer.opacity
+    if (symbolizer.width) props['@_stroke-width'] = symbolizer.width
+    if (symbolizer.cap) props['@_stroke-linecap'] = symbolizer.cap
+    if (symbolizer.dasharray) props['@_stroke-dasharray'] = symbolizer.dasharray.join(',')
+    if (symbolizer.join) props['@_stroke-linejoin'] = symbolizer.join
+    if (symbolizer.visibility === false) props['@_stroke-opacity'] = 0
+    if (graphicStroke) props['@_file'] = graphicStroke
+    if (graphicFill) props['@_file'] = graphicFill
+
+    return {
+      [symbolizerName]: Object.keys(props).length ? props : null,
     }
+  }
+
+  private geoStylerMarkOrIconSymbolizerToMapnik(symbolizer: MarkSymbolizer | IconSymbolizer): any {
+    const props: any = {}
+    const allowOverlap = this.symbolyzersOptions?.MarkSymbolizer?.allowOverlap
+
+    if (symbolizer.kind === 'Mark') {
+      if (allowOverlap) props['@_allow-overlap'] = 'true'
+      if (symbolizer.fillOpacity) props['@_opacity'] = symbolizer.fillOpacity
+      if (symbolizer.strokeColor) props['@_stroke'] = symbolizer.strokeColor
+      if (symbolizer.strokeWidth) props['@_stroke-width'] = symbolizer.strokeWidth
+      if (symbolizer.strokeOpacity) props['@_stroke-opacity'] = symbolizer.strokeOpacity
+      if (symbolizer.radius) {
+        props['@_width'] = symbolizer.radius
+        props['@_height'] = symbolizer.radius
+      }
+      if (symbolizer.wellKnownName) {
+        const icon = this.getWellkownSvg(symbolizer.wellKnownName)
+        if (icon) props['@_file'] = icon
+      }
+    }
+
+    if (symbolizer.kind === 'Icon') {
+      if (symbolizer.allowOverlap) props['@allow-overlap'] = 'true'
+      if (symbolizer.image) props['@_file'] = symbolizer.image
+    }
+
+    if (symbolizer.color) props['@_fill'] = symbolizer.color
+    if (symbolizer.avoidEdges) props['@_avoid-edges'] = symbolizer.avoidEdges
+    if (symbolizer.rotate) props['@_transform'] = `rotate(${symbolizer.rotate}deg)`
+    if (symbolizer.visibility === false) props['@_opacity'] = 0
 
     return {
       MarkersSymbolizer: Object.keys(props).length ? props : null,
@@ -282,9 +317,10 @@ export class MapnikStyleParser implements StyleParser {
   }
 
   private geoStylerRasterSymbolizerToMapnik(symbolizer: RasterSymbolizer): any {
-    const props = {
-      ...(symbolizer.opacity && { '@_opacity': symbolizer.opacity }),
-    }
+    const props: any = {}
+
+    if (symbolizer.opacity) props['@_opacity'] = symbolizer.opacity
+    if (symbolizer.visibility === false) props['@_opacity'] = 0
 
     return {
       RasterSymbolizer: Object.keys(props).length ? props : null,
@@ -292,38 +328,85 @@ export class MapnikStyleParser implements StyleParser {
   }
 
   private geoStylerTextSymbolizerToMapnik(symbolizer: TextSymbolizer): any {
-    // TODO:
-    // symbolizer.anchor
-    const props = {
-      ...(symbolizer.label && { '#text': `[${symbolizer.label}]` }),
-      ...(symbolizer.opacity && { '@_opacity': symbolizer.opacity }),
-      ...(symbolizer.allowOverlap && { '@_allow-overlap': symbolizer.allowOverlap }),
-      ...(symbolizer.avoidEdges && { '@_avoid-edges': symbolizer.avoidEdges }),
-      ...(symbolizer.color && { '@_fill': symbolizer.color }),
-      ...(symbolizer.font && { '@_face-name': symbolizer.font[0] }),
-      ...(symbolizer.size && { '@_size': symbolizer.size }),
-      ...(symbolizer.haloColor && { '@_halo-fill': symbolizer.haloColor }),
-      ...(symbolizer.haloWidth && { '@_halo-radius': symbolizer.haloWidth }),
-      ...(symbolizer.justify && { '@_justify-alignment': symbolizer.justify }),
-      ...(symbolizer.letterSpacing && { '@_character-spacing': symbolizer.letterSpacing }),
-      ...(symbolizer.lineHeight && { '@_line-spacing': symbolizer.lineHeight }),
-      ...(symbolizer.padding && { '@_margin': symbolizer.padding }),
-      ...(symbolizer.transform && { '@_text-transform': symbolizer.transform }),
-      ...(symbolizer.maxWidth && {
-        '@_wrap-before': 'true',
-        '@_wrap-width': symbolizer.maxWidth,
-      }),
-      ...(symbolizer.rotate && {
-        '@_rotate-displacement': 'true',
-        orientation: symbolizer.rotate,
-      }),
+    const props: any = {}
+
+    if (symbolizer.label) props['#text'] = `[${symbolizer.label}]`
+    if (symbolizer.opacity) props['@_opacity'] = symbolizer.opacity
+    if (symbolizer.allowOverlap) props['@_allow-overlap'] = symbolizer.allowOverlap
+    if (symbolizer.avoidEdges) props['@_avoid-edges'] = symbolizer.avoidEdges
+    if (symbolizer.color) props['@_fill'] = symbolizer.color
+    if (symbolizer.font) props['@_face-name'] = symbolizer.font
+    if (symbolizer.size) props['@_size'] = symbolizer.size
+    if (symbolizer.haloColor) props['@_halo-fill'] = symbolizer.haloColor
+    if (symbolizer.haloWidth) props['@_halo-radius'] = symbolizer.haloWidth
+    if (symbolizer.justify) props['@_justify-alignment'] = symbolizer.justify
+    if (symbolizer.letterSpacing) props['@_character-spacing'] = symbolizer.letterSpacing
+    if (symbolizer.lineHeight) props['@_line-spacing'] = symbolizer.lineHeight
+    if (symbolizer.padding) props['@_margin'] = symbolizer.padding
+    if (symbolizer.transform) props['@_text-transform'] = symbolizer.transform
+    if (symbolizer.maxAngle) props['@_max-char-angle-delta'] = symbolizer.maxAngle
+    if (symbolizer.visibility === false) props['@_opacity'] = 0
+    if (symbolizer.maxWidth) {
+      props['@_wrap-before'] = 'true'
+      props['@_wrap-width'] = symbolizer.maxWidth
     }
-    symbolizer.offset
-    // symbolizer.maxAngle
-    // symbolizer.offset
+    if (symbolizer.rotate) {
+      props['@_rotate-displacement'] = 'true'
+      props['@_orientation'] = symbolizer.rotate
+    }
+    if (symbolizer.offset) {
+      const [x, y] = symbolizer.offset
+      props['@_dx'] = x
+      props['@_dy'] = y
+    }
+    if (symbolizer.anchor) {
+      switch (symbolizer.anchor) {
+        case 'center':
+          props['@_vertical-alignment'] = 'middle'
+          props['@_horizontal-alignment'] = 'middle'
+        case 'right':
+          props['@_horizontal-alignment'] = 'right'
+          break
+        case 'left':
+          props['@_horizontal-alignment'] = 'left'
+          break
+        case 'top':
+          props['@_vertical-alignment'] = 'top'
+          break
+        case 'top-left':
+          props['@_vertical-alignment'] = 'top'
+          props['@_horizontal-alignment'] = 'left'
+          break
+        case 'top-right':
+          props['@_vertical-alignment'] = 'top'
+          props['@_horizontal-alignment'] = 'right'
+          break
+        case 'bottom':
+          props['@_vertical-alignment'] = 'bottom'
+          break
+        case 'bottom-left':
+          props['@_vertical-alignment'] = 'bottom'
+          props['@_horizontal-alignment'] = 'left'
+          break
+        case 'bottom-right':
+          props['@_vertical-alignment'] = 'bottom'
+          props['@_horizontal-alignment'] = 'right'
+          break
+      }
+    }
 
     return {
       TextSymbolizer: Object.keys(props).length ? props : null,
+    }
+  }
+
+  private geoStylerGraphicFillToMapnikFile(graphicFill: PointSymbolizer): string | undefined {
+    switch (graphicFill.kind) {
+      case 'Mark':
+        return this.getWellkownSvg(graphicFill.wellKnownName)
+      case 'Icon':
+        return graphicFill.image
+      // TextSymbolizer for pattern not supported
     }
   }
 
@@ -340,6 +423,39 @@ export class MapnikStyleParser implements StyleParser {
   private getRulesFromMapnikObject(mapnikObj: any): Rule[] {
     const layers = mapnikObj.map.style.rules
     return []
+  }
+
+  private getWellkownSvg(name: WellKnownName): string | undefined {
+    switch (name) {
+      case 'X':
+        return 'x.svg'
+      case 'Cross':
+        return 'cross.svg'
+      case 'Square':
+        return 'square.svg'
+      case 'Star':
+        return 'star.svg'
+      case 'Triangle':
+        return 'triangle.svg'
+      case 'shape://backslash':
+        return 'shape-backslash.svg'
+      case 'shape://carrow':
+        return 'shape-carrow.svg'
+      case 'shape://dot':
+        return 'shape-dot.svg'
+      case 'shape://horline':
+        return 'shape-horline.svg'
+      case 'shape://oarrow':
+        return 'shape-oarrow.svg'
+      case 'shape://plus':
+        return 'shape-plus.svg'
+      case 'shape://slash':
+        return 'shape-slash.svg'
+      case 'shape://times':
+        return 'shape-times.svg'
+      case 'shape://vertline':
+        return 'shape-vertline.svg'
+    }
   }
 
   /**
