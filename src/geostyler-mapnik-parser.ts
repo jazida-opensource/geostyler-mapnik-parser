@@ -19,20 +19,30 @@ import {
 } from 'geostyler-style'
 import { parse as xml2json, j2xParser as Json2xmlBuilder } from 'fast-xml-parser'
 
-export type MapOptions = {
-  [key: string]: any
+export type OutputRecords = {
+  [key: string]: string
 }
 
-export interface SymbolizersOptions {
-  MarkSymbolizer?: {
-    allowOverlap?: boolean
-  }
+export interface MapnikSymbolizersOptions {
+  PolygonSymbolizer?: OutputRecords
+  PolygonPatternSymbolizer?: OutputRecords
+  IconSymbolizer?: OutputRecords
+  LineSymbolizer?: OutputRecords
+  LinePatternSymbolizer?: OutputRecords
+  MarkersSymbolizer?: OutputRecords
+  RasterSymbolizer?: OutputRecords
+  TextSymbolizer?: OutputRecords
+}
+
+export interface OutputOptions {
+  includeMap?: boolean
+  map?: OutputRecords
+  style?: OutputRecords
+  symbolizers?: MapnikSymbolizersOptions
 }
 
 export interface MapnikStyleParserOptions {
-  outputMap: boolean
-  mapOptions?: MapOptions
-  symbolizersOptions?: SymbolizersOptions
+  output?: OutputOptions
 }
 
 export enum ComparisonEnum {
@@ -50,9 +60,7 @@ export class MapnikStyleParser implements StyleParser {
   title = 'Mapnik Style Parser'
   static title = 'Mapnik Style Parser'
 
-  readonly outputMap: boolean
-  readonly mapOptions?: MapOptions
-  readonly symbolyzersOptions?: SymbolizersOptions
+  readonly outputOptions: OutputOptions
 
   static negationOperatorMap = {
     not: '!',
@@ -91,23 +99,8 @@ export class MapnikStyleParser implements StyleParser {
     },
   }
 
-  constructor(
-    options: MapnikStyleParserOptions = {
-      outputMap: true,
-      mapOptions: {
-        srs:
-          '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs',
-      },
-      symbolizersOptions: {
-        MarkSymbolizer: {
-          allowOverlap: true,
-        },
-      },
-    },
-  ) {
-    this.outputMap = options.outputMap
-    this.mapOptions = options.mapOptions
-    this.symbolyzersOptions = options.symbolizersOptions
+  constructor(options?: MapnikStyleParserOptions) {
+    this.outputOptions = options?.output ?? {}
   }
 
   // TODO: read style
@@ -120,6 +113,7 @@ export class MapnikStyleParser implements StyleParser {
     const builder = new Json2xmlBuilder({
       format: true,
       ignoreAttributes: false,
+      supressEmptyNode: true,
     })
 
     const mapnikObject = this.geoStylerToMapnikObject(geoStylerStyle)
@@ -131,25 +125,19 @@ export class MapnikStyleParser implements StyleParser {
     const mapnikObj: any = {}
     let root = mapnikObj
 
-    if (this.outputMap) {
-      if (this.mapOptions) {
-        mapnikObj.Map = Object.entries(this.mapOptions).reduce(
-          (acc, [key, val]) => ({
-            ...acc,
-            [`@_${key}`]: val,
-          }),
-          {},
-        )
-      } else {
-        mapnikObj.Map = {}
+    if (this.outputOptions.includeMap) {
+      mapnikObj.Map = {}
+      if (this.outputOptions.map) {
+        mapnikObj.Map = this.applyOutputOptions(mapnikObj.Map, this.outputOptions.map)
       }
       root = mapnikObj.Map
     }
 
     root.Style = {
-      '@_name': geoStylerStyle.name,
       Rule: this.geoStylerRulesToMapnik(geoStylerStyle.rules),
     }
+
+    root.Style = this.applyOutputOptions(root.Style, this.outputOptions.style)
 
     return mapnikObj
   }
@@ -237,17 +225,31 @@ export class MapnikStyleParser implements StyleParser {
 
   private geoStylerFillSymbolizerToMapnik(symbolizer: FillSymbolizer): any {
     const props: any = {}
+    const outlineProps: any = {}
     const isPolygonPatternSymbolizer = !!symbolizer.graphicFill
+    const hasOutline = !!symbolizer.outlineColor
     const symbolizerName = isPolygonPatternSymbolizer ? 'PolygonPatternSymbolizer' : 'PolygonSymbolizer'
     const graphicFill = symbolizer.graphicFill && this.geoStylerGraphicFillToMapnikFile(symbolizer.graphicFill)
 
-    if (symbolizer.color) props['@_fill'] = symbolizer.color
-    if (symbolizer.visibility === false) props['@_fill-opacity'] = 0
-    if (symbolizer.antialias) props['@_gamma'] = symbolizer.antialias
+    if ('color' in symbolizer) props['@_fill'] = symbolizer.color
+    if ('opacity' in symbolizer) props['@_fill-opacity'] = symbolizer.opacity
+    if ('antialias' in symbolizer) props['@_gamma'] = symbolizer.antialias
     if (graphicFill) props['@_file'] = graphicFill
+    if (symbolizer.visibility === false) props['@_fill-opacity'] = 0
+
+    if ('outlineColor' in symbolizer) outlineProps['@_stroke'] = symbolizer.outlineColor
+    if ('outlineOpacity' in symbolizer) outlineProps['@_stroke-opacity'] = symbolizer.outlineOpacity
+    if ('outlineWidth' in symbolizer) outlineProps['@_stroke-width'] = symbolizer.outlineWidth
+    if ('outlineDasharray' in symbolizer) outlineProps['@_stroke-dasharray'] = symbolizer.outlineDasharray
 
     return {
-      [symbolizerName]: Object.keys(props).length ? props : null,
+      [symbolizerName]: this.applyOutputOptions(
+        Object.keys(props).length ? props : null,
+        this.outputOptions.symbolizers?.[symbolizerName],
+      ),
+      ...(hasOutline && {
+        LineSymbolizer: this.applyOutputOptions(outlineProps, this.outputOptions.symbolizers?.LineSymbolizer),
+      }),
     }
   }
 
@@ -266,36 +268,37 @@ export class MapnikStyleParser implements StyleParser {
     const graphicStroke = symbolizer.graphicStroke && this.geoStylerGraphicFillToMapnikFile(symbolizer.graphicStroke)
     const graphicFill = symbolizer.graphicFill && this.geoStylerGraphicFillToMapnikFile(symbolizer.graphicFill)
 
-    if (symbolizer.color) props['@_stroke'] = symbolizer.color
-    if (symbolizer.opacity) props['@_stroke-opacity'] = symbolizer.opacity
-    if (symbolizer.width) props['@_stroke-width'] = symbolizer.width
-    if (symbolizer.cap) props['@_stroke-linecap'] = symbolizer.cap
+    if ('color' in symbolizer) props['@_stroke'] = symbolizer.color
+    if ('opacity' in symbolizer) props['@_stroke-opacity'] = symbolizer.opacity
+    if ('width' in symbolizer) props['@_stroke-width'] = symbolizer.width
+    if ('cap' in symbolizer) props['@_stroke-linecap'] = symbolizer.cap
+    if ('join' in symbolizer) props['@_stroke-linejoin'] = symbolizer.join
     if (symbolizer.dasharray) props['@_stroke-dasharray'] = symbolizer.dasharray.join(',')
-    if (symbolizer.join) props['@_stroke-linejoin'] = symbolizer.join
     if (symbolizer.visibility === false) props['@_stroke-opacity'] = 0
     if (graphicStroke) props['@_file'] = graphicStroke
     if (graphicFill) props['@_file'] = graphicFill
 
     return {
-      [symbolizerName]: Object.keys(props).length ? props : null,
+      [symbolizerName]: this.applyOutputOptions(
+        Object.keys(props).length ? props : null,
+        this.outputOptions.symbolizers?.[symbolizerName],
+      ),
     }
   }
 
   private geoStylerMarkOrIconSymbolizerToMapnik(symbolizer: MarkSymbolizer | IconSymbolizer): any {
     const props: any = {}
-    const allowOverlap = this.symbolyzersOptions?.MarkSymbolizer?.allowOverlap
 
     if (symbolizer.kind === 'Mark') {
-      if (allowOverlap) props['@_allow-overlap'] = 'true'
-      if (symbolizer.fillOpacity) props['@_opacity'] = symbolizer.fillOpacity
-      if (symbolizer.strokeColor) props['@_stroke'] = symbolizer.strokeColor
-      if (symbolizer.strokeWidth) props['@_stroke-width'] = symbolizer.strokeWidth
-      if (symbolizer.strokeOpacity) props['@_stroke-opacity'] = symbolizer.strokeOpacity
-      if (symbolizer.radius) {
+      if ('fillOpacity' in symbolizer) props['@_opacity'] = symbolizer.fillOpacity
+      if ('strokeColor' in symbolizer) props['@_stroke'] = symbolizer.strokeColor
+      if ('strokeWidth' in symbolizer) props['@_stroke-width'] = symbolizer.strokeWidth
+      if ('strokeOpacity' in symbolizer) props['@_stroke-opacity'] = symbolizer.strokeOpacity
+      if ('radius' in symbolizer) {
         props['@_width'] = symbolizer.radius
         props['@_height'] = symbolizer.radius
       }
-      if (symbolizer.wellKnownName) {
+      if ('wellKnownName' in symbolizer) {
         const icon = this.getWellkownSvg(symbolizer.wellKnownName)
         if (icon) props['@_file'] = icon
       }
@@ -306,20 +309,23 @@ export class MapnikStyleParser implements StyleParser {
       if (symbolizer.image) props['@_file'] = symbolizer.image
     }
 
-    if (symbolizer.color) props['@_fill'] = symbolizer.color
-    if (symbolizer.avoidEdges) props['@_avoid-edges'] = symbolizer.avoidEdges
-    if (symbolizer.rotate) props['@_transform'] = `rotate(${symbolizer.rotate}deg)`
+    if ('color' in symbolizer) props['@_fill'] = symbolizer.color
+    if ('avoidEdges' in symbolizer) props['@_avoid-edges'] = symbolizer.avoidEdges
+    if ('rotate' in symbolizer && symbolizer.rotate !== 0) props['@_transform'] = `rotate(${symbolizer.rotate}deg)`
     if (symbolizer.visibility === false) props['@_opacity'] = 0
 
     return {
-      MarkersSymbolizer: Object.keys(props).length ? props : null,
+      MarkersSymbolizer: this.applyOutputOptions(
+        Object.keys(props).length ? props : null,
+        this.outputOptions.symbolizers?.MarkersSymbolizer,
+      ),
     }
   }
 
   private geoStylerRasterSymbolizerToMapnik(symbolizer: RasterSymbolizer): any {
     const props: any = {}
 
-    if (symbolizer.opacity) props['@_opacity'] = symbolizer.opacity
+    if ('opacity' in symbolizer) props['@_opacity'] = symbolizer.opacity
     if (symbolizer.visibility === false) props['@_opacity'] = 0
 
     return {
@@ -330,27 +336,27 @@ export class MapnikStyleParser implements StyleParser {
   private geoStylerTextSymbolizerToMapnik(symbolizer: TextSymbolizer): any {
     const props: any = {}
 
-    if (symbolizer.label) props['#text'] = `[${symbolizer.label}]`
-    if (symbolizer.opacity) props['@_opacity'] = symbolizer.opacity
-    if (symbolizer.allowOverlap) props['@_allow-overlap'] = symbolizer.allowOverlap
-    if (symbolizer.avoidEdges) props['@_avoid-edges'] = symbolizer.avoidEdges
-    if (symbolizer.color) props['@_fill'] = symbolizer.color
-    if (symbolizer.font) props['@_face-name'] = symbolizer.font
-    if (symbolizer.size) props['@_size'] = symbolizer.size
-    if (symbolizer.haloColor) props['@_halo-fill'] = symbolizer.haloColor
-    if (symbolizer.haloWidth) props['@_halo-radius'] = symbolizer.haloWidth
-    if (symbolizer.justify) props['@_justify-alignment'] = symbolizer.justify
-    if (symbolizer.letterSpacing) props['@_character-spacing'] = symbolizer.letterSpacing
-    if (symbolizer.lineHeight) props['@_line-spacing'] = symbolizer.lineHeight
-    if (symbolizer.padding) props['@_margin'] = symbolizer.padding
-    if (symbolizer.transform) props['@_text-transform'] = symbolizer.transform
-    if (symbolizer.maxAngle) props['@_max-char-angle-delta'] = symbolizer.maxAngle
+    if ('label' in symbolizer) props['#text'] = `[${symbolizer.label}]`
+    if ('opacity' in symbolizer) props['@_opacity'] = symbolizer.opacity
+    if ('allowOverlap' in symbolizer) props['@_allow-overlap'] = symbolizer.allowOverlap
+    if ('avoidEdges' in symbolizer) props['@_avoid-edges'] = symbolizer.avoidEdges
+    if ('color' in symbolizer) props['@_fill'] = symbolizer.color
+    if ('font' in symbolizer) props['@_face-name'] = symbolizer.font
+    if ('size' in symbolizer) props['@_size'] = symbolizer.size
+    if ('haloColor' in symbolizer) props['@_halo-fill'] = symbolizer.haloColor
+    if ('haloWidth' in symbolizer) props['@_halo-radius'] = symbolizer.haloWidth
+    if ('justify' in symbolizer) props['@_justify-alignment'] = symbolizer.justify
+    if ('letterSpacing' in symbolizer) props['@_character-spacing'] = symbolizer.letterSpacing
+    if ('lineHeight' in symbolizer) props['@_line-spacing'] = symbolizer.lineHeight
+    if ('padding' in symbolizer) props['@_margin'] = symbolizer.padding
+    if ('transform' in symbolizer) props['@_text-transform'] = symbolizer.transform
+    if ('maxAngle' in symbolizer) props['@_max-char-angle-delta'] = symbolizer.maxAngle
     if (symbolizer.visibility === false) props['@_opacity'] = 0
-    if (symbolizer.maxWidth) {
+    if ('maxWidth' in symbolizer) {
       props['@_wrap-before'] = 'true'
       props['@_wrap-width'] = symbolizer.maxWidth
     }
-    if (symbolizer.rotate) {
+    if ('rotate' in symbolizer && symbolizer.rotate !== 0) {
       props['@_rotate-displacement'] = 'true'
       props['@_orientation'] = symbolizer.rotate
     }
@@ -359,7 +365,7 @@ export class MapnikStyleParser implements StyleParser {
       props['@_dx'] = x
       props['@_dy'] = y
     }
-    if (symbolizer.anchor) {
+    if ('anchor' in symbolizer) {
       switch (symbolizer.anchor) {
         case 'center':
           props['@_vertical-alignment'] = 'middle'
@@ -396,7 +402,10 @@ export class MapnikStyleParser implements StyleParser {
     }
 
     return {
-      TextSymbolizer: Object.keys(props).length ? props : null,
+      TextSymbolizer: this.applyOutputOptions(
+        Object.keys(props).length ? props : null,
+        this.outputOptions.symbolizers?.TextSymbolizer,
+      ),
     }
   }
 
@@ -456,6 +465,19 @@ export class MapnikStyleParser implements StyleParser {
       case 'shape://vertline':
         return 'shape-vertline.svg'
     }
+  }
+
+  private applyOutputOptions(xmlObject?: any, outputRecords?: OutputRecords): any {
+    if (!xmlObject) return null
+    if (!outputRecords) return xmlObject
+
+    return Object.entries(outputRecords).reduce(
+      (acc, [key, val]) => ({
+        ...acc,
+        [`@_${key}`]: val,
+      }),
+      xmlObject,
+    )
   }
 
   /**

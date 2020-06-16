@@ -3,7 +3,23 @@ import { MapnikStyleParser } from './geostyler-mapnik-parser'
 
 export async function sld2mapnik(sldString: string) {
   const sldParser = new SLDParser()
-  const mapnikParser = new MapnikStyleParser()
+  const mapnikParser = new MapnikStyleParser({
+    output: {
+      includeMap: true,
+      map: {
+        srs: '+init=epsg:3857',
+      },
+      style: {
+        name: 'style',
+      },
+      symbolizers: {
+        MarkersSymbolizer: {
+          'allow-overlap': 'true',
+          'avoid-edges': 'true',
+        },
+      },
+    },
+  })
 
   const style = await sldParser.readStyle(sldString)
   const xml = await mapnikParser.writeStyle(style)
