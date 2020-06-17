@@ -1,3 +1,5 @@
+import path from 'path'
+import { parse as xml2json, j2xParser as Json2xmlBuilder } from 'fast-xml-parser'
 import {
   StyleParser,
   Style,
@@ -17,7 +19,6 @@ import {
   WellKnownName,
   PointSymbolizer,
 } from 'geostyler-style'
-import { parse as xml2json, j2xParser as Json2xmlBuilder } from 'fast-xml-parser'
 
 export type OutputRecords = {
   [key: string]: string
@@ -36,6 +37,7 @@ export interface MapnikSymbolizersOptions {
 
 export interface OutputOptions {
   includeMap?: boolean
+  wellKnownBasePath?: string
   map?: OutputRecords
   style?: OutputRecords
   symbolizers?: MapnikSymbolizersOptions
@@ -100,7 +102,9 @@ export class MapnikStyleParser implements StyleParser {
   }
 
   constructor(options?: MapnikStyleParserOptions) {
-    this.outputOptions = options?.output ?? {}
+    this.outputOptions = options?.output ?? {
+      includeMap: true,
+    }
   }
 
   // TODO: read style
@@ -299,7 +303,7 @@ export class MapnikStyleParser implements StyleParser {
         props['@_height'] = symbolizer.radius
       }
       if ('wellKnownName' in symbolizer) {
-        const icon = this.getWellkownSvg(symbolizer.wellKnownName)
+        const icon = this.getFilePath(this.getWellkownSvg(symbolizer.wellKnownName))
         if (icon) props['@_file'] = icon
       }
     }
@@ -480,9 +484,11 @@ export class MapnikStyleParser implements StyleParser {
     )
   }
 
-  /**
-   * Returns the keys of an object where the value is equal to the passed in value.
-   */
+  private getFilePath(filePath?: string): string | undefined {
+    if (!filePath) return
+    return this.outputOptions.wellKnownBasePath ? path.join(this.outputOptions.wellKnownBasePath, filePath) : filePath
+  }
+
   private static keysByValue(object: any, value: any): string[] {
     return Object.keys(object).filter((key) => object[key] === value)
   }

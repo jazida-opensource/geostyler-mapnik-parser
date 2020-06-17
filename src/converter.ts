@@ -6,6 +6,7 @@ export async function sld2mapnik(sldString: string) {
   const mapnikParser = new MapnikStyleParser({
     output: {
       includeMap: true,
+      wellKnownBasePath: 'icons',
       map: {
         srs: '+init=epsg:3857',
       },
@@ -36,24 +37,3 @@ export async function mapnik2sld(mapnikString: string) {
 
   return sld
 }
-
-// function convertFilter(filter?: Filter): Filter | undefined {
-//   return filter
-// }
-
-// function convertSymbolizer(symbolyzer: Symbolizer): Symbolizer {
-//   return symbolyzer
-// }
-
-// function convertScaleDenominator(scaleDenominator?: ScaleDenominator): ScaleDenominator | undefined {
-//   return scaleDenominator
-// }
-
-// function convertRule(rule: Rule): Rule {
-//   return {
-//     name: rule.name,
-//     filter: convertFilter(rule.filter),
-//     scaleDenominator: convertScaleDenominator(rule.scaleDenominator),
-//     symbolizers: rule.symbolizers.map(convertSymbolizer),
-//   }
-// }
