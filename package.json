@@ -9,7 +9,9 @@
     "format": "prettier '**/*.ts' --write",
     "format:check": "prettier '**/*.ts' --check",
     "prebuild": "rimraf dist",
-    "build": "tsc && typedoc",
+    "build": "npm run build:code && npm run build:docs",
+    "build:code": "tsc",
+    "build:docs": "typedoc",
     "start": "tsc --watch",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
@@ -72,6 +74,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "geostyler-sld-parser": "^2.0.1",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.2.10",
@@ -82,7 +85,6 @@
   },
   "dependencies": {
     "fast-xml-parser": "^3.17.4",
-    "geostyler-sld-parser": "^2.0.1",
     "geostyler-style": "^2.0.3"
   }
 }
