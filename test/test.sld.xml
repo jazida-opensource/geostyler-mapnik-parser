@@ -1,0 +1,1332 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <sld:NamedLayer>
+    <sld:Name>Ocorrencias_Minerais</sld:Name>
+    <sld:UserStyle>
+      <sld:Name>Style1</sld:Name>
+      <sld:FeatureTypeStyle>
+        <sld:FeatureTypeName>Ocorrencias_Minerais</sld:FeatureTypeName>
+        <sld:Rule>
+          <sld:Name>Agregados e Revestimentos, Garimpo</sld:Name>
+          <sld:Title>Agregados e Revestimentos, Garimpo</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Agregados e Revestimentos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Garimpo</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#897044</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Agregados e Revestimentos, Indeterminado</sld:Name>
+          <sld:Title>Agregados e Revestimentos, Indeterminado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Agregados e Revestimentos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Indeterminado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#897044</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Agregados e Revestimentos, Mina</sld:Name>
+          <sld:Title>Agregados e Revestimentos, Mina</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Agregados e Revestimentos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Mina</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>x</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#897044</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+              </sld:Mark>
+              <sld:Size>18</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Agregados e Revestimentos, Não explotado</sld:Name>
+          <sld:Title>Agregados e Revestimentos, Não explotado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Agregados e Revestimentos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Não explotado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#897044</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Agua, Garimpo</sld:Name>
+          <sld:Title>Agua, Garimpo</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Agua</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Garimpo</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#1E90FF</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Agua, Indeterminado</sld:Name>
+          <sld:Title>Agua, Indeterminado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Agua</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Indeterminado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#1E90FF</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Agua, Mina</sld:Name>
+          <sld:Title>Agua, Mina</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Agua</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Mina</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#1E90FF</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Agua, Não explotado</sld:Name>
+          <sld:Title>Agua, Não explotado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Agua</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Não explotado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#1E90FF</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Diversos, Garimpo</sld:Name>
+          <sld:Title>Diversos, Garimpo</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Diversos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Garimpo</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#FFA0BE</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Diversos, Indeterminado</sld:Name>
+          <sld:Title>Diversos, Indeterminado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Diversos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Indeterminado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#FFA0BE</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Diversos, Mina</sld:Name>
+          <sld:Title>Diversos, Mina</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Diversos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Mina</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>x</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#FFA0BE</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+              </sld:Mark>
+              <sld:Size>18</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Diversos, Não explotado</sld:Name>
+          <sld:Title>Diversos, Não explotado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Diversos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Não explotado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#FFA0BE</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Fertilizantes e Sais, Garimpo</sld:Name>
+          <sld:Title>Fertilizantes e Sais, Garimpo</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Fertilizantes e Sais</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Garimpo</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#00FFC5</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Fertilizantes e Sais, Indeterminado</sld:Name>
+          <sld:Title>Fertilizantes e Sais, Indeterminado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Fertilizantes e Sais</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Indeterminado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#00FFC5</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Fertilizantes e Sais, Mina</sld:Name>
+          <sld:Title>Fertilizantes e Sais, Mina</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Fertilizantes e Sais</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Mina</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>x</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#00FFC5</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+              </sld:Mark>
+              <sld:Size>18</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Fertilizantes e Sais, Não explotado</sld:Name>
+          <sld:Title>Fertilizantes e Sais, Não explotado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Fertilizantes e Sais</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Não explotado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#00FFC5</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Gemas e Pedras Preciosas, Garimpo</sld:Name>
+          <sld:Title>Gemas e Pedras Preciosas, Garimpo</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Gemas e Pedras Preciosas</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Garimpo</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E600A9</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Gemas e Pedras Preciosas, Indeterminado</sld:Name>
+          <sld:Title>Gemas e Pedras Preciosas, Indeterminado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Gemas e Pedras Preciosas</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Indeterminado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E600A9</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Gemas e Pedras Preciosas, Mina</sld:Name>
+          <sld:Title>Gemas e Pedras Preciosas, Mina</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Gemas e Pedras Preciosas</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Mina</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>x</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E600A9</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+              </sld:Mark>
+              <sld:Size>18</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Gemas e Pedras Preciosas, Não explotado</sld:Name>
+          <sld:Title>Gemas e Pedras Preciosas, Não explotado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Gemas e Pedras Preciosas</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Não explotado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E600A9</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Industriais, Garimpo</sld:Name>
+          <sld:Title>Industriais, Garimpo</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Industriais</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Garimpo</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E64C00</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Industriais, Indeterminado</sld:Name>
+          <sld:Title>Industriais, Indeterminado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Industriais</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Indeterminado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E64C00</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Industriais, Mina</sld:Name>
+          <sld:Title>Industriais, Mina</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Industriais</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Mina</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E64C00</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Industriais, Não explotado</sld:Name>
+          <sld:Title>Industriais, Não explotado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Industriais</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Não explotado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E64C00</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Ferrosos, Garimpo</sld:Name>
+          <sld:Title>Metais Ferrosos, Garimpo</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Ferrosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Garimpo</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#000000</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Ferrosos, Indeterminado</sld:Name>
+          <sld:Title>Metais Ferrosos, Indeterminado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Ferrosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Indeterminado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#000000</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Ferrosos, Mina</sld:Name>
+          <sld:Title>Metais Ferrosos, Mina</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Ferrosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Mina</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>x</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#000000</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+              </sld:Mark>
+              <sld:Size>18</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Ferrosos, Não explotado</sld:Name>
+          <sld:Title>Metais Ferrosos, Não explotado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Ferrosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Não explotado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#000000</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Nao Ferrosos, Garimpo</sld:Name>
+          <sld:Title>Metais Nao Ferrosos, Garimpo</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Nao Ferrosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Garimpo</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#002673</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Nao Ferrosos, Indeterminado</sld:Name>
+          <sld:Title>Metais Nao Ferrosos, Indeterminado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Nao Ferrosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Indeterminado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#002673</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Nao Ferrosos, Mina</sld:Name>
+          <sld:Title>Metais Nao Ferrosos, Mina</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Nao Ferrosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Mina</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>x</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#002673</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+              </sld:Mark>
+              <sld:Size>18</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Nao Ferrosos, Não explotado</sld:Name>
+          <sld:Title>Metais Nao Ferrosos, Não explotado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Nao Ferrosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Não explotado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#002673</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Preciosos, Garimpo</sld:Name>
+          <sld:Title>Metais Preciosos, Garimpo</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Preciosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Garimpo</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E6E600</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Preciosos, Indeterminado</sld:Name>
+          <sld:Title>Metais Preciosos, Indeterminado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Preciosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Indeterminado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E6E600</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Preciosos, Mina</sld:Name>
+          <sld:Title>Metais Preciosos, Mina</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Preciosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Mina</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>x</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E6E600</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+              </sld:Mark>
+              <sld:Size>18</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Metais Preciosos, Não explotado</sld:Name>
+          <sld:Title>Metais Preciosos, Não explotado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Metais Preciosos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Não explotado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#E6E600</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Recursos Energeticos, Garimpo</sld:Name>
+          <sld:Title>Recursos Energeticos, Garimpo</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Recursos Energeticos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Garimpo</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#A80000</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Recursos Energeticos, Indeterminado</sld:Name>
+          <sld:Title>Recursos Energeticos, Indeterminado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Recursos Energeticos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Indeterminado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#A80000</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Recursos Energeticos, Mina</sld:Name>
+          <sld:Title>Recursos Energeticos, Mina</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Recursos Energeticos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Mina</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>x</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#A80000</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+              </sld:Mark>
+              <sld:Size>18</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+        <sld:Rule>
+          <sld:Name>Recursos Energeticos, Não explotado</sld:Name>
+          <sld:Title>Recursos Energeticos, Não explotado</sld:Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Commoditie</ogc:PropertyName>
+                <ogc:Literal>Recursos Energeticos</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+              <ogc:PropertyIsEqualTo>
+                <ogc:PropertyName>Status_Eco</ogc:PropertyName>
+                <ogc:Literal>Não explotado</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <sld:PointSymbolizer>
+            <sld:Graphic>
+              <sld:Mark>
+                <sld:WellKnownName>circle</sld:WellKnownName>
+                <sld:Fill>
+                  <sld:CssParameter name="fill">#A80000</sld:CssParameter>
+                  <sld:CssParameter name="fill-opacity">1.0</sld:CssParameter>
+                </sld:Fill>
+                <sld:Stroke>
+                  <sld:CssParameter name="stroke">#000000</sld:CssParameter>
+                  <sld:CssParameter name="stroke-width">1</sld:CssParameter>
+                  <sld:CssParameter name="stroke-opacity">1.0</sld:CssParameter>
+                </sld:Stroke>
+              </sld:Mark>
+              <sld:Size>4</sld:Size>
+              <sld:Rotation>0</sld:Rotation>
+            </sld:Graphic>
+          </sld:PointSymbolizer>
+        </sld:Rule>
+      </sld:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+</sld:StyledLayerDescriptor>
