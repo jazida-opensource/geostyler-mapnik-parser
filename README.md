@@ -16,7 +16,7 @@ npm run build
 node dist/bin/sld2mapnik.js input.sld > output.mapnik.xml
 ```
 
-#### Programatically
+#### Programmatically
 
 ```javascript
 import SLDParser from 'geostyler-sld-parser'
