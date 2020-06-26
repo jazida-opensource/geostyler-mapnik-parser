@@ -11,6 +11,6 @@
     "outDir": "./dist",
     "incremental": true,
   },
-  "include": ["src", "test"],
+  "include": ["src", "test", "bin", "bin/sld2mapnik.ts"],
   "exclude": ["node_modules", "dist", "data"]
 }
